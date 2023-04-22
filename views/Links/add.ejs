@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Links</h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+        <div class="btn-group me-2">
+            <button class="btn btn-sm btn-outline-secondary">Future Use</button>
+        </div>
+    </div>
+</div>
+
+<div class="col py-3">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Main Page</a></li>
+                    <li class="breadcrumb-item active">New Link</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col text-end fw-lighter">
+            <b>UserId</b>
+        </div>
+    </div>
+
+</div>
+
+
+<form action="/add" method="POST">
+
+    <div class="col">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="Title" value="" placeholder="Title" required>
+    </div>
+
+    <div class="col">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" id="category" name="Category" value="" placeholder="Category" required>
+    </div>
+
+    <div class="col">
+        <label for="url">URL</label>
+        <input type="text" class="form-control" id="url" name="URL" value="" placeholder="URL" required>
+
+    <div class="form-group mb-4">
+        <label for="notes">Notes</label>
+        <textarea class="form-control" name="Notes" id="notes" cols="30" rows="12" placeholder="Notes"></textarea>
+    </div>
+
+    <div class="form-group mb-4">
+        <button type="submit" class="btn btn-primary">Add Link</button>
+    </div>
+
+</form>
