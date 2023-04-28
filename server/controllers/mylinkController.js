@@ -1,5 +1,8 @@
-const Link = require('../models/Links')
+const { Link } = require('../models/Links')
 const mongoose = require('mongoose')
+const passport = require('passport')
+//const initializePassport = require('../config/passport-config')
+
 /**
  * GET for HomePage
  */
@@ -9,7 +12,7 @@ exports.homepage = async (req, res) => {
     const locals = {
         title: 'Home Page'
     }
-    let perPage = 12
+    let perPage = 9
     let page = req.query.page || 1
 
     try {
@@ -55,7 +58,7 @@ exports.postLink = async (req, res) => {
     try {
         await Link.create(newLink)
         await req.flash('info', 'New Link has been added')
-        res.redirect('/')
+        res.redirect('/homepage')
     } catch (error) {
         console.log(error) 
     }
@@ -111,7 +114,7 @@ exports.editPost = async (req, res) => {
             notes: req.body.Notes
         })
 
-        res.redirect(`/edit/${req.params.id}`)
+        res.redirect(`/homepage`)
 
     } catch (error) {
         console.log(error)
@@ -129,7 +132,7 @@ exports.deleteRecord = async (req, res) => {
     try {
 
        await Link.deleteOne({ _id: req.params.id })
-       res.redirect('/')
+       res.redirect('/homepage')
     } catch (error) {
         console.log(error)
 
@@ -166,4 +169,61 @@ exports.searchDatabase = async (req, res) => {
         console.log(error);
       }
    
+}
+
+/**
+ * Post for LOGIN
+ */
+
+exports.postlogin = function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) {
+        req.flash('info', 'Bad Email or password used'); // add this line to set the flash message
+        return res.redirect('/');
+      }
+
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        return res.redirect('/homepage');
+      });
+    })(req, res, next);
+  };
+
+
+exports.login = async (req, res) => {
+    const messages = await req.consumeFlash('info')
+    const locals = {
+        title: 'Login Page'
+    }
+    res.render('Links/login.ejs', { locals, messages})
+}
+
+/**
+ * POST for LOGOUT
+ */
+exports.logout = function(req, res, next) {
+    req.logout(function(err){
+        if (err) { return next(err);}
+        res.redirect('/')
+    })
+}
+
+/**
+ * GET for LOGOUT
+ */
+exports.getlogout = async (req, res) => {
+    const messages = await req.consumeFlash('info')
+    const locals = {
+        title: 'Logout Page'
+    }
+    res.render('Links/logout.ejs', { locals, messages})
+}
+
+exports.about = async (req, res) => {
+    const messages = await req.consumeFlash('info')
+    const locals = {
+        title: 'About Page'
+    }
+    res.render('Links/about.ejs', { locals, messages})
 }

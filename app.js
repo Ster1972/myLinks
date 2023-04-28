@@ -1,13 +1,19 @@
 require('dotenv').config()
+const User = require('./server/models/Links.js')
 const express = require('express')
 const expressLayout = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const { flash } = require('express-flash-message')
+const brcrypt = require('bcryptjs')
+const passport = require('passport')
+const initializePassport = require('./server/config/passport-config.js')
 const session = require('express-session')
 const connectDB = require('./server/config/db.js')
 
 const app = express()
 const port = 5056 || process.env.port
+
+initializePassport(passport)
 
 // Connect to Database
 connectDB()
@@ -23,7 +29,7 @@ app.use(express.static('public'))
 // Express session (cookies)
 app.use(
     session({
-      secret: 'secret',
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
@@ -32,11 +38,16 @@ app.use(
     })
   )
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 // Flash message
 
-app.use(
-    flash({ 
-        sessionKeyName: 'express-flash-message', }))
+// app.use(
+//     flash({ 
+//         sessionKeyName: 'express-flash-message', }))
+
+app.use(flash())
 
 // Templating Engine
 app.use(expressLayout)

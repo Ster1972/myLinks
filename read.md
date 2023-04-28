@@ -1,0 +1,1 @@
+This is learning app which connects to a mongoDB database with authentication.
