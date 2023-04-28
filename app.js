@@ -11,7 +11,7 @@ const session = require('express-session')
 const connectDB = require('./server/config/db.js')
 
 const app = express()
-const port = process.env.port || 5056
+const port = process.env.PORT || 5056
 
 initializePassport(passport)
 
