@@ -21,6 +21,8 @@
                         <th scope="col">Title</th>
                         <th scope="col">Category</th>
                         <th scope="col">URL</th>
+                        <th scope="col">View Record</th>
+                        <th scope="col">Edit</th>
                         <th scope="col" class="text-end">Action</th>
                     </tr>
                 </thead>
@@ -34,16 +36,23 @@
                                 <%= element.category %>
                             </td>
                             <td>
-                                <%= element.linkuri %>
+                              <a href="<%= element.linkuri %>" type="button" class="btn btn-primary btn-small">
+                                <i class="bi bi-link-45deg"></i>
+                            </a>
+
+                            </td>
+                            <td>
+                              <a href="/view/<%= element._id %>" type="button" class="btn btn-primary btn-small">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                            </td>
+                            <td>
+                              <a href="/edit/<%= element._id %>" type="button" class="btn btn-warning btn-small">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
                             </td>
                             <td class="text-end">
                                 <div class="d-flex flex-row justify-content-end gap-2">
-                                    <a href="/view/<%= element._id %>" type="button" class="btn btn-primary btn-small">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="/edit/<%= element._id %>" type="button" class="btn btn-warning btn-small">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
                                     <form action="/edit/<%= element._id %>?_method=DELETE" method="POST"
                                         class="position-relative">
                                         <button type="submit" class="btn btn-danger btn-small">
