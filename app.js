@@ -17,7 +17,7 @@ initializePassport(passport)
 
 // Connect to Database
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  app.listen(port, () => {
     console.log("listening for requests")
   })
 })
