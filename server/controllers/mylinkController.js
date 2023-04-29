@@ -48,7 +48,7 @@ exports.addLink = async (req, res) => {
  */
 
 exports.postLink = async (req, res) => {
-    console.log(req.body)
+    //console.log(req.body)
     const newLink = new Link({
         title: req.body.Title,
         category: req.body.Category,
