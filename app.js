@@ -63,7 +63,7 @@ app.use('/', require('./server/routes/mylink.js'))
 
 // Handle 404 
 
-app.get('*', (req, res) => {
+app.all('*', (req, res) => {
     res.status(404).render('404.ejs')
 })
 
