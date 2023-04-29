@@ -16,7 +16,11 @@ const port = process.env.PORT || 5056
 initializePassport(passport)
 
 // Connect to Database
-connectDB()
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("listening for requests")
+  })
+})
 
 app.use(express.urlencoded({ extended: true}))
 
