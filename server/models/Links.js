@@ -17,8 +17,8 @@ const UserSchema = new Schema ({
 })
 
 module.exports = {
-    Link: mongoose.model('Link', LinksSchema),
-    User: mongoose.model('User', UserSchema)
+    Link: mongoose.model('Link', LinksSchema, 'links'),
+    User: mongoose.model('User', UserSchema, 'users')
   }
   
 
