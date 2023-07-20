@@ -11,7 +11,9 @@
   "keywords": [],
   "author": "Bob",
   "license": "ISC",
-  "engines": {"node": "16.x"},
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
@@ -21,7 +23,7 @@
     "express-flash-message": "2.1.0",
     "express-session": "^1.17.3",
     "method-override": "^3.0.0",
-    "mongoose": "^7.1.0",
+    "mongoose": "^7.4.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   },
