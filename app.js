@@ -3,11 +3,14 @@ const User = require('./server/models/Links.js')
 const express = require('express')
 const expressLayout = require('express-ejs-layouts')
 const methodOverride = require('method-override')
-const { flash } = require('express-flash-message')
+const session = require('express-session')
+//const { getFlashMessages } = require('express-flash-message')
+//const flash = require('express-flash-message')
+//console.log('----------', getFlashMessages)
 const brcrypt = require('bcryptjs')
 const passport = require('passport')
 const initializePassport = require('./server/config/passport-config.js')
-const session = require('express-session')
+
 const connectDB = require('./server/config/db.js')
 
 const app = express()
@@ -21,6 +24,13 @@ connectDB().then(() => {
     console.log("listening for requests")
   })
 })
+// Flash message
+
+ //app.use(
+ //    flash({ 
+   //     sessionKeyName: 'express-flash-message', }))
+
+//app.use(getFlashMessages)
 
 app.use(express.urlencoded({ extended: true}))
 
@@ -45,13 +55,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Flash message
 
-// app.use(
-//     flash({ 
-//         sessionKeyName: 'express-flash-message', }))
-
-app.use(flash())
 
 // Templating Engine
 app.use(expressLayout)

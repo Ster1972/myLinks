@@ -19,10 +19,10 @@ function checkNotAuthenticated(req, res, next) {
 /**
  *  myLink Routes
  */
-router.use((req, res, next) => {
-    res.locals.messages = flash(req, res);
-    next();
-  })
+//router.use((req, res, next) => {
+  //  res.locals.messages = getFlashMessages(req, res);
+  //  next();
+//  })
 router.get('/homepage', checkAuthenticated, mylinkController.homepage)
 router.get('/add',  checkAuthenticated, mylinkController.addLink)
 router.post('/add',  checkAuthenticated, mylinkController.postLink)

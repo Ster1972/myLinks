@@ -197,6 +197,7 @@ exports.login = async (req, res) => {
         title: 'Login Page'
     }
     res.render('Links/login.ejs', { locals, messages})
+    
 }
 
 /**
